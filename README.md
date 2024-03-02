@@ -1,3 +1,5 @@
+# Linux Privilege Escalation
+Learn the fundamentals of Linux privilege escalation. From enumeration to exploitation, get hands-on with over 8 different privilege escalation techniques.
 ## Enumeration
 what is the hostname of the target system
 ```
