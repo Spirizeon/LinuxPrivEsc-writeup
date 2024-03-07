@@ -15,7 +15,7 @@ $ 3.13.0.24-generic
 ```
 What Linux is this.
 </br>
-we can view the OS name through either `neofetch` or `/etc/os-release`
+
 ```
 $ cat /etc/os-release
 NAME = "Ubuntu Linux"
@@ -110,3 +110,22 @@ $ ssh user2@MACHINE_IP
 $ cd /home/Ubuntu
 $ base64 flag3.txt | base64 --decode
 ```
+
+## Privilege escalation: Capabilities
+How many binaries have set capabilities?
+(even i'm not sure)
+```
+getcap -r / 2>/dev/null
+```
+What other binary can be used thorugh its capabilities?
+</br>1
+view
+</br>
+What is the content of the flag4.txt file?
+```
+cd ../ubuntu/
+cat flag4.txt
+```
+
+
+
